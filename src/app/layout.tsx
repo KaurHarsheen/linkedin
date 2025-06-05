@@ -6,7 +6,7 @@ import Navigation from '@/components/Navigation'
 const montserrat = Montserrat({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'ProVerse - Professional Networking Platform',
+  title: 'Skillora - Professional Networking Platform',
   description: 'A modern professional networking platform that blends LinkedIn and Instagram aesthetics',
 }
 
