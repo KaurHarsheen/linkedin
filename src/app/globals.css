@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-cream: #EFE4D2;
+  --color-blue: #254D70;
+  --color-navy: #131D4F;
+  --color-brown: #954C2E;
+}
+
+@layer base {
+  body {
+    @apply bg-[#EFE4D2] text-[#131D4F];
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300;
+  }
+  
+  .btn-primary {
+    @apply bg-[#254D70] text-white px-6 py-2 rounded-lg hover:bg-[#131D4F] transition-colors duration-300;
+  }
+  
+  .btn-secondary {
+    @apply bg-[#EFE4D2] text-[#131D4F] px-6 py-2 rounded-lg hover:bg-[#954C2E] hover:text-white transition-colors duration-300;
+  }
+} 
