@@ -3,15 +3,16 @@
 @tailwind utilities;
 
 :root {
-  --color-cream: #EFE4D2;
-  --color-blue: #254D70;
-  --color-navy: #131D4F;
-  --color-brown: #954C2E;
+  --color-light-green: #DDEB9D;
+  --color-green: #A0C878;
+  --color-teal: #27667B;
+  --color-navy: #143D60;
 }
 
 @layer base {
   body {
-    @apply bg-[#EFE4D2] text-[#131D4F];
+    @apply bg-[#DDEB9D] text-[#143D60];
+    font-family: 'Montserrat', sans-serif;
   }
 }
 
@@ -21,10 +22,10 @@
   }
   
   .btn-primary {
-    @apply bg-[#254D70] text-white px-6 py-2 rounded-lg hover:bg-[#131D4F] transition-colors duration-300;
+    @apply bg-[#27667B] text-white px-6 py-2 rounded-lg hover:bg-[#143D60] transition-colors duration-300;
   }
   
   .btn-secondary {
-    @apply bg-[#EFE4D2] text-[#131D4F] px-6 py-2 rounded-lg hover:bg-[#954C2E] hover:text-white transition-colors duration-300;
+    @apply bg-[#DDEB9D] text-[#143D60] px-6 py-2 rounded-lg hover:bg-[#A0C878] hover:text-white transition-colors duration-300;
   }
 } 

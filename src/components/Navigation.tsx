@@ -19,7 +19,7 @@ const Navigation = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
-            <Link href="/" className="text-2xl font-bold text-[#254D70]">
+            <Link href="/" className="text-2xl font-bold text-[#27667B]">
               ProVerse
             </Link>
           </div>
@@ -31,7 +31,7 @@ const Navigation = () => {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="text-[#131D4F] hover:text-[#954C2E] transition-colors duration-300"
+                  className="text-[#143D60] hover:text-[#A0C878] transition-colors duration-300"
                 >
                   {item.name}
                 </Link>
@@ -43,7 +43,7 @@ const Navigation = () => {
           <div className="md:hidden">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-[#131D4F] hover:text-[#954C2E] focus:outline-none"
+              className="text-[#143D60] hover:text-[#A0C878] focus:outline-none"
               aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
             >
               <svg
@@ -66,8 +66,12 @@ const Navigation = () => {
 
           {/* Desktop Auth Buttons */}
           <div className="hidden md:flex items-center space-x-4">
-            <button className="btn-primary">Sign In</button>
-            <button className="btn-secondary">Sign Up</button>
+            <Link href="/auth" className="btn-primary">
+              Sign In
+            </Link>
+            <Link href="/auth" className="btn-secondary">
+              Sign Up
+            </Link>
           </div>
         </div>
 
@@ -79,15 +83,19 @@ const Navigation = () => {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="block px-3 py-2 text-[#131D4F] hover:text-[#954C2E] transition-colors duration-300"
+                  className="block px-3 py-2 text-[#143D60] hover:text-[#A0C878] transition-colors duration-300"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {item.name}
                 </Link>
               ))}
               <div className="pt-4 pb-3 border-t border-gray-200">
-                <button className="w-full btn-primary mb-2">Sign In</button>
-                <button className="w-full btn-secondary">Sign Up</button>
+                <Link href="/auth" className="block w-full btn-primary mb-2 text-center">
+                  Sign In
+                </Link>
+                <Link href="/auth" className="block w-full btn-secondary text-center">
+                  Sign Up
+                </Link>
               </div>
             </div>
           </div>
