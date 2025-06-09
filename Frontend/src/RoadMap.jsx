@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import NodeDetails from './components/NodeDetails'
 import axios from 'axios'
 const colors = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7', '#DDA0DD'];
 
@@ -420,9 +421,15 @@ const roadmap = roadmapArray.map((step, index) => ({
           </div>
         </div>
       </div>
-
+            {selectedNode && (
+  <NodeDetails 
+    selectedNode={selectedNode}
+    toggleComplete={toggleComplete}
+    setSelectedNode={setSelectedNode}
+  />
+)}
       {/* Selected Node Details */}
-      {selectedNode && (
+      {/* {selectedNode && (
         <div style={{ 
           marginTop: '20px',
           padding: '28px', 
@@ -546,7 +553,7 @@ const roadmap = roadmapArray.map((step, index) => ({
             </button>
           </div>
         </div>
-      )}
+      )} */}
     </>
   );
 };
@@ -576,7 +583,7 @@ const Roadmap = ({goal,currentSkills}) => (
         maxWidth: '600px',
         margin: '0 auto'
       }}>
-        Follow this personalized roadmap to achieve your Full Stack Developer goals. Click on any step to explore detailed learning materials and track your progress.
+        Follow this personalized roadmap to achieve your career goals. Click on any step to explore detailed learning materials and track your progress.
       </p>
     </div>
     
