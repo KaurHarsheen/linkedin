@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import NodeDetails from './components/NodeDetails'
 import axios from 'axios'
+import { useLocation } from 'react-router-dom';
 const colors = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7', '#DDA0DD'];
 
 // Function to create smooth curved path positions
@@ -55,7 +56,9 @@ const createSmoothSVGPath = (positions) => {
   return path;
 };
 
-const RoadmapContent = ({goal,currentSkills}) => {
+const RoadmapContent = () => {
+   const location = useLocation();
+  const { goal, currentSkills } = location.state || {}; 
   const [roadmapArray, setRoadmapArray] = useState([]);
   const [selectedNode, setSelectedNode] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -64,18 +67,7 @@ const RoadmapContent = ({goal,currentSkills}) => {
   useEffect(() => {
     const fetchRoadmap = async () => {
       try {
-        setIsLoading(true);
-        
-        // Simulated API call - replace with your actual API call
-        // const mockRoadmap = [
-        //   "HTML & CSS Fundamentals",
-        //   "JavaScript Mastery",
-        //   "React.js Framework", 
-        //   "Backend with Node.js",
-        //   "Database Integration",
-        //   "Deploy & Go Live"
-        // ];
-       
+        setIsLoading(true);       
 const response = await axios.post('http://localhost:5000/api/roadmap', {
   currentSkills,
   goal

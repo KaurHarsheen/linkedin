@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Roadmap from '../RoadMap';
 
 export default function LearningPath() {
   const [goal, setGoal] = useState('');
   const [currentSkills, setCurrentSkills] = useState('');
-  const navigate = useNavigate(); // Get the navigate function
+  const navigate = useNavigate();
 
   const handleClick = () => {
-    // You can do any validation or state saving here before navigation
-
-    // Navigate to the /roadmap page
     navigate('/roadmap', {
-      state: { goal, currentSkills } // Optional: pass data to roadmap route
+      state: { goal, currentSkills }
     });
+    // <Roadmap goal={goal} currentSkills={currentSkills} />
   };
 
   return (
