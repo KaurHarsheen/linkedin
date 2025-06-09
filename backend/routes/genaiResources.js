@@ -11,7 +11,7 @@ router.post('/', async (req, res) => {
     const { topic, description } = req.body;
 
     const prompt = `
-Give me 5 currently accessible and high-quality learning resources on "${topic}" from either GeeksforGeeks or Coursera.
+Give me 5 currently accessible and high-quality learning resources on "${topic}" .
 Each resource should include only:
 - a "title": the name of the resource or article
 - a "summary": a short 2–3 line description of what the resource covers
