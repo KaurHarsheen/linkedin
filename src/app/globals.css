@@ -2,30 +2,83 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --color-light-green: #DDEB9D;
-  --color-green: #A0C878;
-  --color-teal: #27667B;
-  --color-navy: #143D60;
+body {
+  @apply bg-black text-white font-serif transition-colors duration-300;
 }
 
-@layer base {
-  body {
-    @apply bg-[#DDEB9D] text-[#143D60];
-    font-family: 'Montserrat', sans-serif;
-  }
+.dark body {
+  @apply bg-black text-white;
 }
 
-@layer components {
-  .card {
-    @apply bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300;
-  }
-  
-  .btn-primary {
-    @apply bg-[#27667B] text-white px-6 py-2 rounded-lg hover:bg-[#143D60] transition-colors duration-300;
-  }
-  
-  .btn-secondary {
-    @apply bg-[#DDEB9D] text-[#143D60] px-6 py-2 rounded-lg hover:bg-[#A0C878] hover:text-white transition-colors duration-300;
-  }
+.light body {
+  @apply bg-white text-[#202A44];
+}
+
+.card {
+  @apply rounded-xl shadow-lg p-6 border border-white/10 bg-white/5 text-white transition-colors duration-300;
+}
+.dark .card {
+  @apply bg-white/5 border-white/10 text-white;
+}
+.light .card {
+  @apply bg-white border-[#202A44]/10 text-[#202A44];
+}
+
+.btn-primary {
+  @apply bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-300;
+}
+.light .btn-primary {
+  @apply bg-[#202A44] text-white hover:bg-[#131D4F];
+}
+
+.btn-secondary {
+  @apply bg-white/10 text-white px-6 py-2 rounded-lg hover:bg-white/20 transition-colors duration-300;
+}
+.light .btn-secondary {
+  @apply bg-white text-[#202A44] hover:bg-[#EFE4D2];
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap');
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+.animate-bounce {
+  animation: bounce 1.5s infinite;
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.animate-fade-in {
+  animation: fade-in 2s ease-in;
+}
+@keyframes scroll-belt {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-scroll-belt {
+  animation: scroll-belt 18s linear infinite;
+}
+@keyframes scroll-vertical {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-83%); }
+}
+.animate-scroll-vertical {
+  animation: scroll-vertical 24s linear infinite;
+}
+
+/* Force all Tailwind gray text utilities to #202A44 in light mode for readability */
+.light .text-gray-50,
+.light .text-gray-100,
+.light .text-gray-200,
+.light .text-gray-300,
+.light .text-gray-400,
+.light .text-gray-500,
+.light .text-gray-600,
+.light .text-gray-700,
+.light .text-gray-800,
+.light .text-gray-900 {
+  color: #202A44 !important;
 } 

@@ -17,7 +17,7 @@ export default function WrapPage() {
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-[#131D4F] mb-4">
+          <h1 className="text-4xl font-bold text-white dark:text-white light:text-[#202A44] mb-4">
             Your {timeframe === 'monthly' ? 'Monthly' : 'Quarterly'} Wrap
           </h1>
           <div className="flex justify-center space-x-4">
@@ -25,8 +25,8 @@ export default function WrapPage() {
               onClick={() => setTimeframe('monthly')}
               className={`px-4 py-2 rounded-lg ${
                 timeframe === 'monthly'
-                  ? 'bg-[#254D70] text-white'
-                  : 'bg-[#EFE4D2] text-[#131D4F]'
+                  ? 'bg-blue-600 text-white'
+                  : 'bg-white/10 text-white dark:text-white light:text-[#202A44]'
               }`}
             >
               Monthly
@@ -35,8 +35,8 @@ export default function WrapPage() {
               onClick={() => setTimeframe('quarterly')}
               className={`px-4 py-2 rounded-lg ${
                 timeframe === 'quarterly'
-                  ? 'bg-[#254D70] text-white'
-                  : 'bg-[#EFE4D2] text-[#131D4F]'
+                  ? 'bg-blue-600 text-white'
+                  : 'bg-white/10 text-white dark:text-white light:text-[#202A44]'
               }`}
             >
               Quarterly
@@ -51,10 +51,10 @@ export default function WrapPage() {
               <div className="flex items-center space-x-4">
                 <span className="text-4xl">{stat.icon}</span>
                 <div>
-                  <h3 className="text-lg font-semibold text-[#131D4F]">
+                  <h3 className="text-lg font-semibold text-white dark:text-white light:text-[#202A44]">
                     {stat.value}
                   </h3>
-                  <p className="text-gray-600">{stat.label}</p>
+                  <p className="text-gray-300 dark:text-gray-300 light:text-[#202A44]">{stat.label}</p>
                 </div>
               </div>
             </div>
@@ -63,32 +63,32 @@ export default function WrapPage() {
 
         {/* Highlight Reel */}
         <div className="card mb-12">
-          <h2 className="text-2xl font-semibold text-[#131D4F] mb-6">
+          <h2 className="text-2xl font-semibold text-white dark:text-white light:text-[#202A44] mb-6">
             Highlight Reel
           </h2>
           <div className="space-y-6">
             <div className="flex items-start space-x-4">
-              <div className="w-12 h-12 rounded-full bg-[#EFE4D2] flex items-center justify-center">
-                <span className="text-2xl">🏆</span>
+              <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center">
+                <span className="text-2xl text-blue-600">🏆</span>
               </div>
               <div>
-                <h3 className="font-medium text-[#131D4F]">
+                <h3 className="font-medium text-white dark:text-white light:text-[#202A44]">
                   Completed Advanced React Course
                 </h3>
-                <p className="text-gray-600 mt-1">
+                <p className="text-gray-300 dark:text-gray-300 light:text-[#202A44] mt-1">
                   Mastered advanced concepts like hooks, context, and performance optimization.
                 </p>
               </div>
             </div>
             <div className="flex items-start space-x-4">
-              <div className="w-12 h-12 rounded-full bg-[#EFE4D2] flex items-center justify-center">
-                <span className="text-2xl">🚀</span>
+              <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center">
+                <span className="text-2xl text-blue-600">🚀</span>
               </div>
               <div>
-                <h3 className="font-medium text-[#131D4F]">
+                <h3 className="font-medium text-white dark:text-white light:text-[#202A44]">
                   Launched Personal Project
                 </h3>
-                <p className="text-gray-600 mt-1">
+                <p className="text-gray-300 dark:text-gray-300 light:text-[#202A44] mt-1">
                   Built and deployed a full-stack application using Next.js and TypeScript.
                 </p>
               </div>
@@ -98,32 +98,32 @@ export default function WrapPage() {
 
         {/* Roadmap Progress */}
         <div className="card">
-          <h2 className="text-2xl font-semibold text-[#131D4F] mb-6">
+          <h2 className="text-2xl font-semibold text-white dark:text-white light:text-[#202A44] mb-6">
             Roadmap Progress
           </h2>
           <div className="space-y-4">
             <div className="relative">
-              <div className="h-2 bg-gray-200 rounded-full">
+              <div className="h-2 bg-white/10 rounded-full">
                 <div
-                  className="h-2 bg-[#254D70] rounded-full"
+                  className="h-2 bg-blue-600 rounded-full"
                   style={{ width: '75%' }}
                 ></div>
               </div>
               <div className="flex justify-between mt-2">
-                <span className="text-sm text-gray-600">Frontend Development</span>
-                <span className="text-sm font-medium text-[#254D70]">75%</span>
+                <span className="text-sm text-gray-300 dark:text-gray-300 light:text-[#202A44]">Frontend Development</span>
+                <span className="text-sm font-medium text-gray-300 dark:text-gray-300 light:text-[#202A44]">75%</span>
               </div>
             </div>
             <div className="relative">
-              <div className="h-2 bg-gray-200 rounded-full">
+              <div className="h-2 bg-white/10 rounded-full">
                 <div
-                  className="h-2 bg-[#254D70] rounded-full"
+                  className="h-2 bg-blue-600 rounded-full"
                   style={{ width: '45%' }}
                 ></div>
               </div>
               <div className="flex justify-between mt-2">
-                <span className="text-sm text-gray-600">Backend Development</span>
-                <span className="text-sm font-medium text-[#254D70]">45%</span>
+                <span className="text-sm text-gray-300 dark:text-gray-300 light:text-[#202A44]">Backend Development</span>
+                <span className="text-sm font-medium text-gray-300 dark:text-gray-300 light:text-[#202A44]">45%</span>
               </div>
             </div>
           </div>

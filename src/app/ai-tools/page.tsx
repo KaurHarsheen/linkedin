@@ -49,12 +49,11 @@ export default function AIToolsPage() {
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-[#131D4F] mb-4">
+          <h1 className="text-4xl font-bold text-white dark:text-white light:text-[#202A44] mb-4">
             AI-Powered Tools
           </h1>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Enhance your professional presence with our suite of AI-powered tools.
-            From resume generation to personalized learning paths, we've got you covered.
+          <p className="text-gray-300 dark:text-gray-300 light:text-[#202A44] max-w-2xl mx-auto">
+            Leverage the power of artificial intelligence to enhance your professional profile. Our suite of AI tools helps you create compelling resumes, generate engaging bios, and build your personal brand.
           </p>
         </div>
 
@@ -66,19 +65,19 @@ export default function AIToolsPage() {
               onClick={() => setActiveTool(tool.id)}
               className={`card text-left transition-all duration-300 ${
                 activeTool === tool.id
-                  ? 'ring-2 ring-[#254D70]'
+                  ? 'ring-2 ring-blue-600'
                   : 'hover:shadow-lg'
               }`}
             >
               <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 rounded-full bg-[#EFE4D2] flex items-center justify-center">
+                <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center">
                   <span className="text-2xl">{tool.icon}</span>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-[#131D4F]">
+                  <h3 className="text-lg font-semibold text-white dark:text-white light:text-[#202A44]">
                     {tool.name}
                   </h3>
-                  <p className="text-gray-600 mt-1">{tool.description}</p>
+                  <p className="text-gray-300 dark:text-gray-300 light:text-[#202A44] mt-1">{tool.description}</p>
                 </div>
               </div>
             </button>
@@ -88,7 +87,7 @@ export default function AIToolsPage() {
         {/* Tool Interface */}
         <div className="card">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-semibold text-[#131D4F]">
+            <h2 className="text-2xl font-semibold text-skillora-deep-blue">
               {tools.find((t) => t.id === activeTool)?.name}
             </h2>
             <span className="text-4xl">

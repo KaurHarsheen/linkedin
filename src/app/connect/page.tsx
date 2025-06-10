@@ -44,12 +44,11 @@ export default function ConnectPage() {
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-[#131D4F] mb-4">
+          <h1 className="text-4xl font-bold text-white dark:text-white light:text-[#202A44] mb-4">
             Connect with Peers
           </h1>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Find and connect with professionals in your field. Schedule mock interviews,
-            share experiences, and grow together.
+          <p className="text-gray-300 dark:text-gray-300 light:text-[#202A44] max-w-2xl mx-auto">
+            Build meaningful professional relationships and expand your network. Connect with like-minded professionals, share experiences, and grow together in your career journey.
           </p>
         </div>
 
@@ -61,8 +60,8 @@ export default function ConnectPage() {
               onClick={() => setActiveFilter(filter.id)}
               className={`px-4 py-2 rounded-lg ${
                 activeFilter === filter.id
-                  ? 'bg-[#254D70] text-white'
-                  : 'bg-[#EFE4D2] text-[#131D4F]'
+                  ? 'bg-blue-600 text-white'
+                  : 'bg-white/10 text-white dark:text-white light:text-[#202A44]'
               }`}
             >
               {filter.label}
@@ -75,20 +74,20 @@ export default function ConnectPage() {
           {peers.map((peer) => (
             <div key={peer.id} className="card">
               <div className="flex items-start space-x-4">
-                <div className="w-16 h-16 rounded-full bg-gray-200"></div>
+                <div className="w-16 h-16 rounded-full bg-white/10"></div>
                 <div className="flex-1">
-                  <h3 className="text-lg font-semibold text-[#131D4F]">
+                  <h3 className="text-lg font-semibold text-white dark:text-white light:text-[#202A44]">
                     {peer.name}
                   </h3>
-                  <p className="text-[#254D70]">{peer.role}</p>
-                  <p className="text-sm text-gray-600 mt-1">
+                  <p className="text-gray-300 dark:text-gray-300 light:text-[#202A44]">{peer.role}</p>
+                  <p className="text-sm text-gray-500 mt-1">
                     Experience: {peer.experience}
                   </p>
                   <div className="flex flex-wrap gap-2 mt-3">
                     {peer.skills.map((skill) => (
                       <span
                         key={skill}
-                        className="px-2 py-1 bg-[#EFE4D2] rounded-full text-xs"
+                        className="px-2 py-1 bg-white/10 rounded-full text-xs text-white"
                       >
                         {skill}
                       </span>
@@ -98,14 +97,14 @@ export default function ConnectPage() {
                     <button
                       className={`flex-1 py-2 rounded-lg ${
                         peer.available
-                          ? 'bg-[#254D70] text-white'
-                          : 'bg-gray-200 text-gray-500 cursor-not-allowed'
+                          ? 'bg-blue-600 text-white'
+                          : 'bg-white/10 text-white cursor-not-allowed'
                       }`}
                       disabled={!peer.available}
                     >
                       {peer.available ? 'Request Interview' : 'Unavailable'}
                     </button>
-                    <button className="flex-1 py-2 rounded-lg border border-[#254D70] text-[#254D70]">
+                    <button className="flex-1 py-2 rounded-lg border border-blue-600 text-blue-600">
                       Message
                     </button>
                   </div>
@@ -118,10 +117,10 @@ export default function ConnectPage() {
         {/* Interview Request Modal Placeholder */}
         <div className="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center">
           <div className="bg-white rounded-xl p-6 max-w-md w-full mx-4">
-            <h3 className="text-xl font-semibold text-[#131D4F] mb-4">
+            <h3 className="text-xl font-semibold text-skillora-deep-blue mb-4">
               Request Interview
             </h3>
-            <p className="text-gray-600 mb-6">
+            <p className="text-skillora-blue mb-6">
               Send a personalized message to request a mock interview.
             </p>
             <textarea
