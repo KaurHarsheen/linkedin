@@ -7,6 +7,9 @@ import Profile from './pages/Profile';
 import './App.css'
 import Navbar from './Navbar';
 import LearningPath from './pages/LearningPath'
+import InterviewHomePage from './pages/InterviewHomePage';
+import InterviewPage from './pages/InterviewPage';
+import FeedbackPage from './pages/FeedbackPage';
 function App() {
   const navigate = useNavigate();
   const location = useLocation(); // 👈 to detect current route
@@ -30,6 +33,9 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/" element={<HomePage />} />
         <Route path="/roadmap" element={<RoadmapPage goal={goal} currentSkills={currentSkills} />} />
+        <Route path="/interview/:id" element={<InterviewPage />} />
+          <Route path="/feedback/:id" element={<FeedbackPage />} />
+          <Route path="/interview" element={<InterviewHomePage />} />
       </Routes>
     </>
   );
