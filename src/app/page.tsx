@@ -1,7 +1,108 @@
 'use client';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
+
+const Line = dynamic(() => import('react-chartjs-2').then(mod => mod.Line), { ssr: false });
 
 export default function HomePage() {
+  // Chart data and options
+  const data = {
+    labels: ['01', '02', '03', '04', '05', '06', '07'],
+    datasets: [
+      {
+        label: 'This month',
+        data: [8, 6, 7, 9, 8, 10, 11],
+        borderColor: '#60a5fa',
+        backgroundColor: 'rgba(96,165,250,0.2)',
+        tension: 0.4,
+        pointRadius: 4,
+        pointBackgroundColor: '#60a5fa',
+        fill: true,
+      },
+      {
+        label: 'Last month',
+        data: [10, 7, 6, 7, 6, 7, 8],
+        borderColor: '#fbbf24',
+        backgroundColor: 'rgba(251,191,36,0.1)',
+        tension: 0.4,
+        pointRadius: 4,
+        pointBackgroundColor: '#fbbf24',
+        fill: true,
+      },
+    ],
+  };
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        labels: { color: '#fff', font: { size: 14 } },
+      },
+      tooltip: {
+        backgroundColor: '#111827',
+        titleColor: '#fff',
+        bodyColor: '#fff',
+        borderColor: '#374151',
+        borderWidth: 1,
+        padding: 12,
+        callbacks: {
+          label: function(context: any) {
+            return `${context.dataset.label}: ${context.parsed.y}h`;
+          }
+        }
+      },
+      title: { display: false },
+    },
+    hover: {
+      mode: 'nearest' as const,
+      intersect: true,
+      animationDuration: 600,
+    },
+    elements: {
+      line: {
+        borderWidth: 4,
+        borderCapStyle: 'round' as CanvasLineCap,
+      },
+      point: {
+        radius: 5,
+        hoverRadius: 8,
+        backgroundColor: '#fff',
+        borderWidth: 3,
+        borderColor: (ctx: any) => ctx.dataset.borderColor,
+        hoverBorderColor: '#fff',
+        hoverBorderWidth: 4,
+      },
+    },
+    scales: {
+      x: {
+        ticks: { color: '#cbd5e1', font: { size: 13 } },
+        grid: { color: 'rgba(255,255,255,0.05)' },
+      },
+      y: {
+        min: 0,
+        max: 12,
+        ticks: { color: '#cbd5e1', font: { size: 13 }, stepSize: 2, callback: (v: any) => v + 'h' },
+        grid: { color: 'rgba(255,255,255,0.07)' },
+      },
+    },
+    animation: {
+      duration: 1800,
+      easing: 'easeInOutCubic' as const,
+      animateScale: true,
+      animateRotate: true,
+    },
+  };
+
   return (
     <div className="min-h-screen w-full bg-black flex flex-col items-center justify-center text-white px-4">
       <div className="flex flex-col items-center justify-center flex-1 w-full pt-24">
@@ -62,6 +163,22 @@ export default function HomePage() {
           <div className="bg-white/5 border border-white/10 rounded-lg p-4 flex flex-col items-center text-center text-white shadow-md">
             <h3 className="text-lg font-bold mb-2">Career Resources</h3>
             <p className="text-sm text-gray-300">Access guides, projects, and apprenticeships to boost your career.</p>
+          </div>
+        </div>
+      </section>
+      {/* Performance Chart Section - moved here */}
+      <section className="w-full bg-black pt-12 pb-8">
+        <div className="max-w-4xl mx-auto">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4 gap-4">
+            <h2 className="text-2xl md:text-3xl font-bold text-white">Track your performance and keep up with your peers</h2>
+            <select className="bg-white/10 text-white px-4 py-2 rounded-lg border border-white/10 focus:outline-none focus:ring-2 focus:ring-blue-600" title="Select date range">
+              <option>01-07 May</option>
+              <option>08-14 May</option>
+              <option>15-21 May</option>
+            </select>
+          </div>
+          <div className="bg-white/5 border border-white/10 rounded-xl p-6 shadow-lg">
+            <Line data={data} options={options} height={120} />
           </div>
         </div>
       </section>

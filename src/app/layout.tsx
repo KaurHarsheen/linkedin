@@ -2,13 +2,14 @@ import type { Metadata } from 'next'
 import { Montserrat } from 'next/font/google'
 import './globals.css'
 import Navigation from '@/components/Navigation'
-
-const montserrat = Montserrat({ subsets: ['latin'] })
+import SessionProviderWrapper from '@/components/SessionProviderWrapper'
 
 export const metadata: Metadata = {
   title: 'Skillora - Professional Networking Platform',
   description: 'A modern professional networking platform that blends LinkedIn and Instagram aesthetics',
 }
+
+const montserrat = Montserrat({ subsets: ['latin'] })
 
 export default function RootLayout({
   children,
@@ -18,10 +19,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={montserrat.className}>
-        <Navigation />
-        <main className="min-h-screen">
-          {children}
-        </main>
+        <SessionProviderWrapper>
+          <Navigation />
+          <main className="min-h-screen">
+            {children}
+          </main>
+        </SessionProviderWrapper>
       </body>
     </html>
   )

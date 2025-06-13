@@ -1,5 +1,7 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSession, signIn, signOut } from "next-auth/react";
+import axios from "axios";
 
 const user = {
   name: 'Pratama Aksara',
@@ -46,6 +48,43 @@ const calendar = {
 };
 
 export default function ProfilePage() {
+  const { data: session } = useSession();
+  const [loginCounts, setLoginCounts] = useState<{ [date: string]: number }>({});
+  const [events, setEvents] = useState<any[]>([]);
+
+  useEffect(() => {
+    if (session?.user?.email) {
+      // Log login
+      axios.post("/api/logLogin", { userId: session.user.email, date: new Date().toISOString().slice(0, 10) });
+
+      // Fetch login history
+      axios.get("/api/getLogins", { params: { userId: session.user.email } }).then(res => {
+        setLoginCounts(res.data.logins);
+      });
+
+      // Fetch Google Calendar events
+      if (session.accessToken) {
+        axios.get("/api/fetchEvents", {
+          headers: { Authorization: `Bearer ${session.accessToken}` }
+        }).then(res => {
+          setEvents(res.data.events);
+        });
+      }
+    }
+  }, [session]);
+
+  // Helper to get color intensity for a day
+  const getDayColor = (day: number, month: string) => {
+    const year = new Date().getFullYear();
+    const monthNum = new Date(`${month} 1, ${year}`).getMonth() + 1;
+    const dayStr = `${year}-${String(monthNum).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+    const count = loginCounts[dayStr] || 0;
+    if (count >= 5) return 'bg-blue-900 text-white';
+    if (count >= 3) return 'bg-blue-700 text-white';
+    if (count >= 1) return 'bg-blue-400 text-white';
+    return 'bg-skillora-bg text-skillora-blue';
+  };
+
   return (
     <div className="container mx-auto px-2 py-8 grid grid-cols-1 lg:grid-cols-12 gap-8">
       {/* Left Sidebar */}
@@ -243,7 +282,12 @@ export default function ProfilePage() {
           </div>
           <div className="grid grid-cols-7 gap-1 text-center">
             {[...Array(31)].map((_, i) => (
-              <span key={i} className={`rounded-full px-2 py-1 ${calendar.days.includes(i+1) ? 'bg-skillora-blue text-white' : 'bg-skillora-bg text-skillora-blue'}`}>{i+1}</span>
+              <span
+                key={i}
+                className={`rounded-full px-2 py-1 ${getDayColor(i + 1, calendar.month)}`}
+              >
+                {i + 1}
+              </span>
             ))}
           </div>
         </div>
@@ -251,10 +295,16 @@ export default function ProfilePage() {
         <div className="card">
           <h3 className="font-semibold mb-2">Upcoming schedule</h3>
           <ul className="space-y-2">
-            {calendar.events.map((event, idx) => (
+            {events.length === 0 && <li className="text-gray-400 text-sm">No upcoming events</li>}
+            {events.map((event, idx) => (
               <li key={idx} className="flex flex-col p-2 rounded-lg bg-skillora-bg">
-                <span className="font-semibold text-skillora-blue">{event.title}</span>
-                <span className="text-xs">{event.time} · {event.location}</span>
+                <span className="font-semibold text-skillora-blue">{event.summary}</span>
+                <span className="text-xs">
+                  {event.start?.dateTime
+                    ? new Date(event.start.dateTime).toLocaleString()
+                    : event.start?.date}
+                  {event.location && <> · {event.location}</>}
+                </span>
               </li>
             ))}
           </ul>
