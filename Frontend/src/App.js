@@ -10,6 +10,8 @@ import LearningPath from './pages/LearningPath'
 import InterviewHomePage from './pages/InterviewHomePage';
 import InterviewPage from './pages/InterviewPage';
 import FeedbackPage from './pages/FeedbackPage';
+import InterviewMain from './pages/InterviewMain';
+import SchedulePage from './pages/SchedulePage';
 function App() {
   const navigate = useNavigate();
   const location = useLocation(); // 👈 to detect current route
@@ -35,7 +37,10 @@ function App() {
         <Route path="/roadmap" element={<RoadmapPage goal={goal} currentSkills={currentSkills} />} />
         <Route path="/interview/:id" element={<InterviewPage />} />
           <Route path="/feedback/:id" element={<FeedbackPage />} />
-          <Route path="/interview" element={<InterviewHomePage />} />
+          <Route path="/interviewai" element={<InterviewHomePage />} />
+           <Route path="/interview" element={<InterviewMain />} />
+           <Route path="/schedule" element={<SchedulePage />} />
+          
       </Routes>
     </>
   );
