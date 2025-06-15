@@ -12,12 +12,13 @@ import InterviewPage from './pages/InterviewPage';
 import FeedbackPage from './pages/FeedbackPage';
 import InterviewMain from './pages/InterviewMain';
 import SchedulePage from './pages/SchedulePage';
+import TeamSuggestions from './components/TeamSuggestions';
 function App() {
   const navigate = useNavigate();
   const location = useLocation(); // 👈 to detect current route
   const [goal, setGoal] = useState('');
   const [currentSkills, setCurrentSkills] = useState('');
-
+    const myProfileId = "684ebd98f127a058e7dba9ac";
   const handleClick = () => {
     const skillsArray = currentSkills.split(',').map(skill => skill.trim());
     localStorage.setItem('goal', goal);
@@ -40,7 +41,7 @@ function App() {
           <Route path="/interviewai" element={<InterviewHomePage />} />
            <Route path="/interview" element={<InterviewMain />} />
            <Route path="/schedule" element={<SchedulePage />} />
-          
+           <Route path="/findteam" element={<TeamSuggestions profileId={myProfileId} />} />
       </Routes>
     </>
   );
