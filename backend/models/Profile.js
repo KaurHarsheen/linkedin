@@ -1,26 +1,17 @@
-// backend/models/Profile.js
 const mongoose = require('mongoose');
 
-const profileSchema = new mongoose.Schema({
+const ProfileSchema = new mongoose.Schema({
   name: String,
   title: String,
   location: String,
   connections: Number,
-  mutualConnections: [
-    {
-      name: String,
-      avatar: String
-    }
-  ],
+  mutualConnections: [String],
   mutualCount: Number,
-  organizations: [
-    {
-      name: String,
-      logo: String
-    }
-  ],
+  organizations: [String],
   avatar: String,
-  coverImage: String
+  coverImage: String,
+  embedding: [Number]
 });
 
-module.exports = mongoose.model('Profile', profileSchema,'profiles');
+const Profile = mongoose.model('Profile', ProfileSchema);
+module.exports = Profile;
