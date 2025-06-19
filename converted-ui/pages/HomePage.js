@@ -56,7 +56,7 @@ export default function HomePage() {
         borderWidth: 1,
         padding: 12,
         callbacks: {
-          label: function(context: any) {
+          label: function(context) {
             return `${context.dataset.label}: ${context.parsed.y}h`;
           }
         }
@@ -64,21 +64,21 @@ export default function HomePage() {
       title: { display: false },
     },
     hover: {
-      mode: 'nearest' as const,
+      mode: 'nearest',
       intersect: true,
       animationDuration: 600,
     },
     elements: {
       line: {
         borderWidth: 4,
-        borderCapStyle: 'round' as CanvasLineCap,
+        borderCapStyle: 'round',
       },
       point: {
         radius: 5,
         hoverRadius: 8,
         backgroundColor: '#fff',
         borderWidth: 3,
-        borderColor: (ctx: any) => ctx.dataset.borderColor,
+        borderColor: (ctx) => ctx.dataset.borderColor,
         hoverBorderColor: '#fff',
         hoverBorderWidth: 4,
       },
@@ -91,13 +91,13 @@ export default function HomePage() {
       y: {
         min: 0,
         max: 12,
-        ticks: { color: '#cbd5e1', font: { size: 13 }, stepSize: 2, callback: (v: any) => v + 'h' },
+        ticks: { color: '#cbd5e1', font: { size: 13 }, stepSize: 2, callback: (v) => v + 'h' },
         grid: { color: 'rgba(255,255,255,0.07)' },
       },
     },
     animation: {
       duration: 1800,
-      easing: 'easeInOutCubic' as const,
+      easing: 'easeInOutCubic',
       animateScale: true,
       animateRotate: true,
     },

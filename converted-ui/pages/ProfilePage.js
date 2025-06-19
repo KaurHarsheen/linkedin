@@ -49,8 +49,8 @@ const calendar = {
 
 export default function ProfilePage() {
   const { data: session } = useSession();
-  const [loginCounts, setLoginCounts] = useState<{ [date: string]: number }>({});
-  const [events, setEvents] = useState<any[]>([]);
+  const [loginCounts, setLoginCounts] = useState({});
+  const [events, setEvents] = useState([]);
 
   useEffect(() => {
     if (session?.user?.email) {
@@ -74,7 +74,7 @@ export default function ProfilePage() {
   }, [session]);
 
   // Helper to get color intensity for a day
-  const getDayColor = (day: number, month: string) => {
+  const getDayColor = (day, month) => {
     const year = new Date().getFullYear();
     const monthNum = new Date(`${month} 1, ${year}`).getMonth() + 1;
     const dayStr = `${year}-${String(monthNum).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
