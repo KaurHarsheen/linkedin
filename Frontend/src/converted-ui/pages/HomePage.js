@@ -1,6 +1,7 @@
 'use client';
-import Link from 'next/link';
-import dynamic from 'next/dynamic';
+import { Link } from 'react-router-dom';
+import { Line } from 'react-chartjs-2';
+
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -11,10 +12,8 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
+
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
-
-const Line = dynamic(() => import('react-chartjs-2').then(mod => mod.Line), { ssr: false });
-
 export default function HomePage() {
   // Chart data and options
   const data = {
@@ -112,7 +111,7 @@ export default function HomePage() {
         <p className="text-lg md:text-2xl text-gray-300 mb-10 text-center max-w-2xl">
           Tools to help you scale your site with your business.
         </p>
-        <Link href="/auth">
+        <Link to="/auth">
           <button className="bg-blue-600 hover:bg-blue-700 text-white text-lg font-semibold px-8 py-4 rounded-xl shadow-lg transition-colors duration-300">
             Get started — it's free
           </button>
@@ -279,7 +278,7 @@ export default function HomePage() {
             </div>
           </div>
           <div className="flex justify-center">
-            <Link href="/communities">
+            <Link to="/communities">
               <button className="flex items-center gap-2 text-skillora-blue bg-white/10 border border-skillora-blue px-6 py-2 rounded-lg font-semibold hover:bg-skillora-blue hover:text-white transition-colors duration-300">
                 Explore more
                 <span className="ml-1">→</span>

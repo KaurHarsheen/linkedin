@@ -1,19 +1,25 @@
-'use client';
-
-import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 
 const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(true);
 
   useEffect(() => {
+    const savedMode = localStorage.getItem('theme');
+    if (savedMode === 'dark') setDarkMode(true);
+    else if (savedMode === 'light') setDarkMode(false);
+  }, []);
+
+  useEffect(() => {
     if (darkMode) {
       document.documentElement.classList.add('dark');
       document.documentElement.classList.remove('light');
+      localStorage.setItem('theme', 'dark');
     } else {
       document.documentElement.classList.remove('dark');
       document.documentElement.classList.add('light');
+      localStorage.setItem('theme', 'light');
     }
   }, [darkMode]);
 
@@ -32,7 +38,7 @@ const Navigation = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
-            <Link href="/" className="text-2xl font-bold text-white">
+            <Link to="/" className="text-2xl font-bold text-white no-underline">
               Skillora
             </Link>
           </div>
@@ -43,8 +49,8 @@ const Navigation = () => {
               {navItems.map((item) => (
                 <Link
                   key={item.name}
-                  href={item.href}
-                  className="text-white hover:text-gray-300 transition-colors duration-300"
+                  to={item.href}
+                  className="text-white no-underline hover:text-gray-300 transition-colors duration-300"
                 >
                   {item.name}
                 </Link>
@@ -68,6 +74,16 @@ const Navigation = () => {
               </svg>
             )}
           </button>
+
+          {/* Desktop Auth Buttons */}
+          <div className="hidden md:flex items-center space-x-4">
+            <Link to="/auth" className="bg-white text-black px-6 py-2 rounded-lg font-semibold hover:bg-gray-200 transition-colors duration-300">
+              Login
+            </Link>
+            <Link to="/auth" className="text-white px-6 py-2 rounded-lg font-semibold hover:text-gray-300 transition-colors duration-300">
+              Sign Up
+            </Link>
+          </div>
 
           {/* Mobile Menu Button */}
           <div className="md:hidden">
@@ -93,16 +109,6 @@ const Navigation = () => {
               </svg>
             </button>
           </div>
-
-          {/* Desktop Auth Buttons */}
-          <div className="hidden md:flex items-center space-x-4">
-            <Link href="/auth" className="bg-white text-black px-6 py-2 rounded-lg font-semibold hover:bg-gray-200 transition-colors duration-300">
-              Login
-            </Link>
-            <Link href="/auth" className="text-white px-6 py-2 rounded-lg font-semibold hover:text-gray-300 transition-colors duration-300">
-              Sign Up
-            </Link>
-          </div>
         </div>
 
         {/* Mobile Menu */}
@@ -112,18 +118,18 @@ const Navigation = () => {
               {navItems.map((item) => (
                 <Link
                   key={item.name}
-                  href={item.href}
-                  className="block px-3 py-2 text-white hover:text-gray-300 transition-colors duration-300"
+                  to={item.href}
+                  className="block px-3 py-2 text-white no-underline hover:text-gray-300 transition-colors duration-300"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {item.name}
                 </Link>
               ))}
               <div className="pt-4 pb-3 border-t border-gray-700">
-                <Link href="/auth" className="block w-full bg-white text-black rounded-lg mb-2 text-center font-semibold py-2">
+                <Link to="/auth" className="block w-full bg-white text-black rounded-lg mb-2 text-center font-semibold py-2 no-underline">
                   Login
                 </Link>
-                <Link href="/auth" className="block w-full text-white rounded-lg text-center font-semibold py-2 hover:text-gray-300">
+                <Link to="/auth" className="block w-full text-white rounded-lg text-center font-semibold py-2 hover:text-gray-300 no-underline">
                   Sign Up
                 </Link>
               </div>
@@ -135,4 +141,4 @@ const Navigation = () => {
   );
 };
 
-export default Navigation; 
+export default Navigation;
