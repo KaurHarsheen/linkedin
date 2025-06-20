@@ -28,6 +28,12 @@ export default function AIToolsPage() {
       icon: '🤖',
     },
     {
+      id: 'path',
+      name: 'Learning Path Builder',
+      description: 'Create a customized learning path based on your goals.',
+      icon: '🗺️',
+    },
+    {
       id: 'bio',
       name: 'Bio Generator',
       description: 'Generate an engaging professional bio for your profile.',
@@ -38,25 +44,7 @@ export default function AIToolsPage() {
       name: 'Post Generator',
       description: 'Write a compelling collaboration or achievement post.',
       icon: '📢',
-    },
-    {
-      id: 'resume',
-      name: 'Resume Generator',
-      description: 'Create a professional resume tailored to your experience and target role.',
-      icon: '📝',
-    },
-    {
-      id: 'mentor',
-      name: 'AI Mentor Chat',
-      description: 'Get personalized career advice and guidance from our AI mentor.',
-      icon: '💡',
-    },
-    {
-      id: 'path',
-      name: 'Learning Path Builder',
-      description: 'Create a customized learning path based on your goals.',
-      icon: '🗺️',
-    },
+    }
   ];
 
   const generateContent = async (type, prompt, tone, setOutput, setLoading) => {
@@ -106,7 +94,8 @@ export default function AIToolsPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
+
             {tools.map((tool) => (
               <button
                 key={tool.id}
@@ -150,45 +139,6 @@ export default function AIToolsPage() {
                   >
                     Go to Mock Interview
                   </button>
-                </div>
-              )}
-
-              {activeTool === 'resume' && (
-                <div className="space-y-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                      Target Role
-                    </label>
-                    <input
-                      type="text"
-                      className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white text-black dark:bg-gray-800 dark:text-white"
-                      placeholder="e.g., Senior Frontend Developer"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                      Experience Level
-                    </label>
-                    <select
-                      className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white text-black dark:bg-gray-800 dark:text-white"
-                    >
-                      <option>Entry Level</option>
-                      <option>Mid Level</option>
-                      <option>Senior Level</option>
-                      <option>Lead/Manager</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                      Key Skills
-                    </label>
-                    <input
-                      type="text"
-                      className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white text-black dark:bg-gray-800 dark:text-white"
-                      placeholder="e.g., React, TypeScript, Node.js"
-                    />
-                  </div>
-                  <button className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition">Generate Resume</button>
                 </div>
               )}
 
