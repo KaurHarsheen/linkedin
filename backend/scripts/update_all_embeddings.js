@@ -1,4 +1,4 @@
-require('dotenv').config(); // ✅ automatically looks in current dir
+require('dotenv').config({ path: __dirname + '/../.env' });
 
 
 const mongoose = require('mongoose');
