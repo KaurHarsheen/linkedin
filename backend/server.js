@@ -11,6 +11,7 @@ const geminiResourceRoutes = require('./routes/genaiResources'); // ✅ NEW
 const wrapUpRoutes = require('./routes/wrapUpRoutes');
 const interviewRoutes = require('./routes/Interview');
 const userRoutes = require('./routes/users');
+const youtubeSearchRoutes = require('./routes/youtubeSearch'); // ✅ ADD THIS
 
 dotenv.config();
 
@@ -29,6 +30,7 @@ mongoose.connect(process.env.MONGO_URI, {
 }).catch(err => console.error('❌ MongoDB connection error:', err));
 
 // Routes
+app.use('/api/youtube', youtubeSearchRoutes); // ✅ ADD THIS
 app.use('/api/teamfinder', teamFinderRoutes);
 app.use('/api/profile', profileRoutes);
 app.use('/api/genai', genaiRoutes);
