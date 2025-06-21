@@ -102,7 +102,7 @@ export default function HomePage() {
       animateRotate: true,
     },
   };
-const trendingTags = ['#linode', '#avalanche', '#ankr', '#thwwebapps', 'dev', '#polygon', '#90daysofdevops'];
+const trendingTags = ['#InternationalAffairs', '#GenerativeAI', '#InclusiveMusic', '#ECommerce', '#DEI', '#CyberSec', '#CreativeLeadership'];
   const communities = [
     { name: "🤖 AI & Future of Work", members: "15.2K", status: "🔥 Very Active" },
     { name: "🎨 Creative-Tech Crossover", members: "8.9K", status: "📈 Growing Fast" },
