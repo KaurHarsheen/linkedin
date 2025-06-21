@@ -36,6 +36,7 @@ const roadmap = require('./roadmap');
 const profileRoutes = require('./routes/Profile');
 const geminiResourceRoutes = require('./routes/genaiResources'); // ✅ NEW
 const interviewRoutes=require('./routes/Interview')
+const wrapUpRoutes = require('./routes/wrapUpRoutes');
 dotenv.config();
 
 const app = express();
@@ -58,6 +59,7 @@ app.use('/api/genai', genaiRoutes);
 app.use('/api/roadmap', roadmap);
 app.use('/api/gemini-resources', geminiResourceRoutes); // ✅ NEW
 app.use('/api/interview',interviewRoutes);
+app.use('/api/wrapup', wrapUpRoutes);
 // Start server
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);

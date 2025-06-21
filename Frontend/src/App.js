@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import AIContentGenerator from './AIContentGenerator';
-import RoadmapPage from './RoadMap'; 
+import RoadmapPage from './RoadMap';
 import HomePage from './HomePage';
 import Profile from './pages/Profile';
 import './App.css'
@@ -10,6 +10,8 @@ import LearningPath from './pages/LearningPath'
 import InterviewHomePage from './pages/InterviewHomePage';
 import InterviewPage from './pages/InterviewPage';
 import FeedbackPage from './pages/FeedbackPage';
+import ImageDisplay from './components/ImageDisplay';
+import ResultPage from './pages/ResultPage';
 function App() {
   const navigate = useNavigate();
   const location = useLocation(); // 👈 to detect current route
@@ -25,7 +27,7 @@ function App() {
 
   return (
     <>
-    <Navbar />
+      <Navbar />
 
       {/* Routes */}
       <Routes>
@@ -34,8 +36,9 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/roadmap" element={<RoadmapPage goal={goal} currentSkills={currentSkills} />} />
         <Route path="/interview/:id" element={<InterviewPage />} />
-          <Route path="/feedback/:id" element={<FeedbackPage />} />
-          <Route path="/interview" element={<InterviewHomePage />} />
+        <Route path="/feedback/:id" element={<FeedbackPage />} />
+
+        <Route path='/image' element={<ImageDisplay />} />
       </Routes>
     </>
   );
