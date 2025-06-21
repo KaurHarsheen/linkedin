@@ -1,14 +1,14 @@
-import { User, Mail } from "lucide-react";
-import React, { useState, useEffect } from 'react';
 import { Users, MessageCircle, MoreHorizontal, Plus, Send } from 'lucide-react';
-
+import React, { useState, useEffect } from 'react';
+import TeamSuggestions from '../components/TeamSuggestions';
 export default function ProfilePage() {
   const [profile, setProfile] = useState(null);
+  const myProfileId = "684ebd98f127a058e7dba9ac";
 
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/profile"); // adjust if deployed
+        const res = await fetch(`http://localhost:5000/api/profile/${myProfileId}`);
         const data = await res.json();
         setProfile(data);
       } catch (error) {
@@ -49,6 +49,7 @@ export default function ProfilePage() {
             </div>
 
             {/* Name and Title */}
+            
             <div className="mb-4">
               <h1 className="text-2xl font-semibold text-gray-900 mb-1">
                 {profile.name}
@@ -70,15 +71,15 @@ export default function ProfilePage() {
                   {profile.mutualConnections.map((connection, index) => (
                     <div key={index} className="w-8 h-8 rounded-full border-2 border-white bg-gray-300 overflow-hidden">
                       <div className="w-full h-full bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center text-white text-xs font-medium">
-                        {connection.name?.split(' ').map(n => n[0]).join('')}
+                        {connection.split(' ').map(n => n[0]).join('')}
                       </div>
                     </div>
                   ))}
                 </div>
                 {profile.mutualConnections.length >= 2 && (
                   <span className="text-sm text-gray-600">
-                    <span className="font-medium">{profile.mutualConnections[0]?.name}</span>, 
-                    <span className="font-medium"> {profile.mutualConnections[1]?.name}</span>, 
+                    <span className="font-medium">{profile.mutualConnections[0]}</span>, 
+                    <span className="font-medium"> {profile.mutualConnections[1]}</span>, 
                     and <span className="font-medium">{profile.mutualCount} other mutual connections</span>
                   </span>
                 )}
@@ -113,7 +114,7 @@ export default function ProfilePage() {
                     <div className="w-10 h-10 rounded bg-gray-100 mr-3 flex items-center justify-center">
                       <div className="w-6 h-6 bg-blue-600 rounded"></div>
                     </div>
-                    <span className="text-sm font-medium text-gray-900">{org.name}</span>
+                    <span className="text-sm font-medium text-gray-900">{org}</span>
                   </div>
                 ))}
               </div>

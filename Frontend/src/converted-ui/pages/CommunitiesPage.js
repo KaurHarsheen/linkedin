@@ -1,4 +1,5 @@
-import Link from 'next/link';
+'use client';
+import { Link } from 'react-router-dom';
 
 export default function CommunitiesPage() {
   return (
@@ -57,7 +58,7 @@ export default function CommunitiesPage() {
             <div className="text-gray-300 text-sm mb-2">12.3K members • ⚡ Fast-Growing</div>
           </div>
         </div>
-        <Link href="/">
+        <Link to="/">
           <button className="text-skillora-blue bg-white/10 border border-skillora-blue px-6 py-2 rounded-lg font-semibold hover:bg-skillora-blue hover:text-white transition-colors duration-300">
             ← Back to Home
           </button>

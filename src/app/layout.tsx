@@ -18,13 +18,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={montserrat.className}>
-        <SessionProviderWrapper>
-          <Navigation />
-          <main className="min-h-screen">
-            {children}
-          </main>
-        </SessionProviderWrapper>
+      <body>
+        <div className={montserrat.className}>
+          <SessionProviderWrapper>
+            <Navigation />
+            <main className="min-h-screen">
+              {children}
+            </main>
+          </SessionProviderWrapper>
+        </div>
       </body>
     </html>
   )
