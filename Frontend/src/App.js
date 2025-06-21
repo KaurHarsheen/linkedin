@@ -1,16 +1,10 @@
 import React, { useState } from 'react';
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import AIContentGenerator from './AIContentGenerator';
-<<<<<<< HEAD
-import RoadmapPage from './RoadMap';
-import HomePage from './HomePage';
-import Profile from './pages/Profile';
-=======
 import RoadmapPage from './RoadMap'; 
 import HomePage from './converted-ui/pages/HomePage';
 //import Profile from './pages/Profile';
 import Profile from './converted-ui/pages/ProfilePage';
->>>>>>> 27ef392598935e6a5d021f7df9db802057dffb4e
 import './App.css'
 import AuthPage from './converted-ui/pages/AuthPage';
 import Navbar from './converted-ui/components/Navigation';
@@ -18,10 +12,8 @@ import LearningPath from './pages/LearningPath'
 import InterviewHomePage from './pages/InterviewHomePage';
 import InterviewPage from './pages/InterviewPage';
 import FeedbackPage from './pages/FeedbackPage';
-<<<<<<< HEAD
 import ImageDisplay from './components/ImageDisplay';
 import ResultPage from './pages/ResultPage';
-=======
 import InterviewMain from './pages/InterviewMain';
 import SchedulePage from './pages/SchedulePage';
 import TeamSuggestions from './components/TeamSuggestions';
@@ -34,7 +26,6 @@ import AiToolsPage from './converted-ui/pages/AiToolsPage';
 import CommunitiesPage from './converted-ui/pages/CommunitiesPage';
 
 
->>>>>>> 27ef392598935e6a5d021f7df9db802057dffb4e
 function App() {
   const navigate = useNavigate();
   const location = useLocation(); // 👈 to detect current route
@@ -50,14 +41,9 @@ function App() {
 
   return (
     <>
-<<<<<<< HEAD
-      <Navbar />
-
       {/* Routes */}
-=======
   <Navbar />
   <div className="min-h-screen bg-white text-black dark:bg-black dark:text-white">
->>>>>>> 27ef392598935e6a5d021f7df9db802057dffb4e
       <Routes>
         <Route path="/learning-path" element={<LearningPath />} />
         <Route path="/wrap" element={<WrapPage />} />
@@ -72,17 +58,11 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/roadmap" element={<RoadmapPage goal={goal} currentSkills={currentSkills} />} />
         <Route path="/interview/:id" element={<InterviewPage />} />
-<<<<<<< HEAD
-        <Route path="/feedback/:id" element={<FeedbackPage />} />
-
-        <Route path='/image' element={<ImageDisplay />} />
-=======
           <Route path="/feedback/:id" element={<FeedbackPage />} />
           <Route path="/interviewai" element={<InterviewHomePage />} />
            <Route path="/interview" element={<InterviewMain />} />
            <Route path="/schedule" element={<SchedulePage />} />
            <Route path="/findteam" element={<TeamSuggestions profileId={myProfileId} />} />
->>>>>>> 27ef392598935e6a5d021f7df9db802057dffb4e
       </Routes>
   </div>
 </>
