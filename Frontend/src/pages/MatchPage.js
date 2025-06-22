@@ -1,150 +1,171 @@
 import React, { useEffect, useState } from 'react';
+import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
+import { Button } from './ui/button';
+import Badge from './ui/badge';
+import { ArrowLeft, Users, Calendar, MapPin, Award, Briefcase } from 'lucide-react';
 import { fetchMatches, seedData } from './api/fetchmatches';
 import SchedulePage from './SchedulePage';
-import { useNavigate } from 'react-router-dom';
 
-//const userId = '666111111111111111111111'; // Replace with actual user ID
-
-export default function MatchPage({ userId, matches: initialMatches, selectedDate }) {
-  //console.log(selectedDate)
+const MatchPage = ({ userId, matches: initialMatches, selectedDate }) => {
   const [matches, setMatches] = useState(initialMatches || []);
   const [summary, setSummary] = useState('');
-  const [showSchedule, setShowSchedule] = useState(null);
   const [selectedUser, setSelectedUser] = useState(null);
-  const navigate = useNavigate();
 
   useEffect(() => {
-  console.log("🔍 userId in MatchPage ➜", userId);
-  const getMatches = async () => {
-    try {
-      await seedData(); // Wait for seeding to finish
-      // Add a short delay to ensure DB is updated (optional, but can help with race conditions)
-      await new Promise(res => setTimeout(res, 300));
-      const res = await fetchMatches(userId);
-      if (res && res.matches) {
-        console.log("Hello");
-        setMatches(res.matches || []);
-        setSummary(res.summary || '');
-      } else {
-        console.log("Helli");
+    const getMatches = async () => {
+      try {
+        await seedData();
+        await new Promise(res => setTimeout(res, 300));
+        const res = await fetchMatches(userId);
+        if (res && res.matches) {
+          setMatches(res.matches || []);
+          setSummary(res.summary || '');
+        } else {
+          setMatches([]);
+          setSummary('');
+        }
+      } catch (error) {
+        console.error('Error getting matches:', error);
         setMatches([]);
         setSummary('');
       }
-    } catch (error) {
-      console.error("Error getting matches:", error);
-      setMatches([]);
-      setSummary('');
-    }
-  };
+    };
 
-  getMatches();
-}, [userId]);
+    getMatches();
+  }, [userId]);
 
   if (selectedUser) {
-    // Pass all info to SchedulePage
-    // console.log("🔍 userId in MatchPage ➜", selectedUser._id, selectedUser.name)
     return (
       <SchedulePage
-     
         userId={userId}
         matchedUserId={selectedUser._id}
         matchedUserName={selectedUser.name}
-        selectedUser={selectedUser} // <-- Make sure this is passed!
+        selectedUser={selectedUser}
       />
     );
   }
 
   return (
-    <div
-      style={{
-        minHeight: "100vh",
-        background: "#f5f6fa",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        padding: "3rem 1rem"
-      }}
-    >
-      <div
-        style={{
-          background: "#fff",
-          borderRadius: "14px",
-          boxShadow: "0 4px 24px rgba(0,0,0,0.08)",
-          padding: "2.5rem 2rem",
-          maxWidth: "600px",
-          width: "100%",
-        }}
-      >
-        <h2
-          style={{
-            fontSize: "2.2rem",
-            color: "#0073b1",
-            marginBottom: "2rem",
-            fontWeight: 700,
-            letterSpacing: "0.5px",
-            textAlign: "center"
-          }}
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-slate-900 dark:to-slate-800 p-4">
+      <div className="max-w-4xl mx-auto">
+        <Button
+          variant="ghost"
+          className="mb-6 hover:bg-white/50 dark:hover:bg-slate-800/50"
+          onClick={() => window.location.reload()}
         >
-          Top Matches
-        </h2>
-        {matches.length === 0 ? (
-          <p style={{ textAlign: "center", color: "#888" }}>No matches found.</p>
-        ) : (
-          matches.map(m => (
-            <div
-              key={m._id}
-              style={{
-                border: '1px solid #e1e4e8',
-                borderRadius: "10px",
-                padding: "1.2rem 1rem",
-                marginBottom: "1.2rem",
-                background: "#f9fafb",
-                boxShadow: "0 1px 4px rgba(0,0,0,0.03)",
-                position: "relative"
-              }}
-            >
-              <h3 style={{ margin: 0, color: "#222", fontWeight: 600 }}>{m.name}</h3>
-              <p style={{ margin: "0.5rem 0 0.2rem 0", color: "#555" }}>
-                <strong>Skills:</strong> <span style={{ color: "#0073b1" }}>{m.skills.join(', ')}</span>
-              </p>
-              <p style={{ margin: 0, color: "#555" }}>
-                <strong>Experience:</strong> {m.experience}
-              </p>
-              <button
-                style={{
-                  marginTop: "1rem",
-                  padding: "0.6rem 1.5rem",
-                  fontSize: "1rem",
-                  borderRadius: "6px",
-                  border: "none",
-                  background: "#00b894",
-                  color: "#fff",
-                  cursor: "pointer",
-                  fontWeight: 500,
-                  boxShadow: "0 1px 4px rgba(0,0,0,0.07)",
-                  transition: "background 0.2s"
-                }}
-                onClick={() => setSelectedUser({ ...m, date: selectedDate })}
-                
-              >
-                Schedule a Meet
-              </button>
+          <ArrowLeft className="h-4 w-4 mr-2" />
+          Back to Availability
+        </Button>
+
+        <Card className="bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm shadow-xl border-0">
+          <CardHeader className="text-center pb-8">
+            <div className="h-16 w-16 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-500 p-4 text-white mx-auto mb-4">
+              <Users className="h-8 w-8" />
             </div>
-          ))
-        )}
-        <div
-          style={{
-            marginTop: "2.5rem",
-            padding: "1.2rem",
-            background: "#eaf6ff",
-            borderRadius: "10px",
-            boxShadow: "0 1px 4px rgba(0,0,0,0.02)"
-          }}
-        >
-          <h3 style={{ color: "#0073b1", margin: 0, fontWeight: 600 }}>AI Summary</h3>
-          <p style={{ margin: "0.7rem 0 0 0", color: "#333", fontSize: "1.05rem" }}>{summary}</p>
-        </div>
+            <CardTitle className="text-3xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
+              Top Matches
+            </CardTitle>
+            <p className="text-slate-600 dark:text-slate-300 text-lg">
+              Found {matches.length} potential interview partners
+            </p>
+          </CardHeader>
+
+          <CardContent className="space-y-6">
+            {selectedDate && (
+              <div className="bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 rounded-xl p-4 border border-blue-200 dark:border-blue-800">
+                <div className="flex items-center text-blue-700 dark:text-blue-300">
+                  <Calendar className="h-5 w-5 mr-2" />
+                  <span className="font-medium">
+                    Selected Time: {selectedDate.toLocaleString()}
+                  </span>
+                </div>
+              </div>
+            )}
+
+            {matches.length === 0 ? (
+              <div className="text-center py-12">
+                <div className="h-16 w-16 rounded-full bg-slate-100 dark:bg-slate-700 p-4 mx-auto mb-4">
+                  <Users className="h-8 w-8 text-slate-400" />
+                </div>
+                <p className="text-xl text-slate-600 dark:text-slate-300">
+                  No matches found.
+                </p>
+                <p className="text-slate-500 dark:text-slate-400 mt-2">
+                  Try adjusting your availability or check back later.
+                </p>
+              </div>
+            ) : (
+              <div className="space-y-4">
+                {matches.map((m) => (
+                  <Card
+                    key={m._id}
+                    className="group hover:shadow-lg transition-all duration-300 border border-slate-200 dark:border-slate-700 hover:border-emerald-200 dark:hover:border-emerald-700"
+                  >
+                    <CardContent className="p-6">
+                      <div className="flex items-start justify-between mb-4">
+                        <div className="flex-1">
+                          <h3 className="text-xl font-semibold text-slate-800 dark:text-white mb-2 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
+                            {m.name}
+                          </h3>
+
+                          <div className="flex items-center text-slate-600 dark:text-slate-300 mb-3">
+                            <Briefcase className="h-4 w-4 mr-2" />
+                            <span className="font-medium">Experience:</span>
+                            <span className="ml-2">{m.experience}</span>
+                          </div>
+
+                          <div className="flex items-start text-slate-600 dark:text-slate-300 mb-4">
+                            <Award className="h-4 w-4 mr-2 mt-1 flex-shrink-0" />
+                            <div>
+                              <span className="font-medium">Skills:</span>
+                              <div className="flex flex-wrap gap-2 mt-2">
+                                {m.skills.map((skill, index) => (
+                                  <Badge
+                                    key={index}
+                                    variant="secondary"
+                                    className="bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300 hover:bg-emerald-200 dark:hover:bg-emerald-900/50"
+                                  >
+                                    {skill}
+                                  </Badge>
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <Button
+                        onClick={() =>
+                          setSelectedUser({ ...m, date: selectedDate })
+                        }
+                        className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white py-3 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+                      >
+                        Schedule a Meet
+                      </Button>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            )}
+
+            {summary && (
+              <Card className="bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 border border-blue-200 dark:border-blue-800">
+                <CardContent className="p-6">
+                  <h3 className="text-xl font-semibold text-blue-700 dark:text-blue-300 mb-3 flex items-center">
+                    <Award className="h-5 w-5 mr-2" />
+                    AI Summary
+                  </h3>
+                  <p className="text-slate-700 dark:text-slate-300 leading-relaxed text-lg">
+                    {summary}
+                  </p>
+                </CardContent>
+              </Card>
+            )}
+          </CardContent>
+        </Card>
       </div>
     </div>
   );
-}
+};
+
+export default MatchPage;
