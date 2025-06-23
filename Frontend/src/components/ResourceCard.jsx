@@ -23,7 +23,7 @@ const ResourceCard = ({ title, summary }) => {
   useEffect(() => {
     const fetchYouTubeLink = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/api/youtube?q=${encodeURIComponent(title)}`);
+        const res = await fetch(`${process.env.REACT_APP_API_URL}/api/youtube?q=${encodeURIComponent(title)}`);
         const data = await res.json();
         if (data.videoUrl) {
           setVideoUrl(data.videoUrl);

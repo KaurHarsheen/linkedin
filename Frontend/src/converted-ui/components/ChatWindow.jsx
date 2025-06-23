@@ -23,7 +23,7 @@ export default function ChatWindow() {
     if (!aiPrompt.trim()) return;
     setAiLoading(true);
     try {
-      const response = await axios.post('http://localhost:5000/api/genai', {
+      const response = await axios.post('${process.env.REACT_APP_API_URL}/api/genai', {
         prompt: aiPrompt,
         tone: 'Professional',
         type: 'Message',
