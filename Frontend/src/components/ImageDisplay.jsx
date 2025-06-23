@@ -13,7 +13,7 @@ function ImageDisplay() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
 
-    const API_URL = '${process.env.REACT_APP_API_URL}/api/wrapup'; // Your backend URL
+    const API_URL = `${process.env.REACT_APP_API_URL}/api/wrapup`; // Your backend URL
 
     const handleSubmit = async (e) => {
         e.preventDefault();

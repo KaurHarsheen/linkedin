@@ -18,7 +18,7 @@ export const fetchMatches = async (userId) => {
 
 export const seedData = async () => {
   try {
-    const response = await axios.get('${process.env.REACT_APP_API_URL}/api/users/seed');
+    const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/users/seed`);
     return response.data;
   } catch (err) {
     console.error("❌ Error in seedData ➜", err);

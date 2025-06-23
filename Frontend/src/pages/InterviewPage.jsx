@@ -63,7 +63,7 @@ const InterviewPage = () => {
 
         try {
             // FIXED: Using a relative path
-            const res = await axios.post('${process.env.REACT_APP_API_URL}/api/interview/next', { interviewId, answer: currentAnswer });
+            const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/interview/next`, { interviewId, answer: currentAnswer });
             const { nextQuestion } = res.data;
             setConversation(prev => [...prev, { role: 'assistant', content: nextQuestion }]);
             speak(nextQuestion); // Speak the new question
@@ -79,7 +79,7 @@ const InterviewPage = () => {
         setIsEnding(true);
         try {
             // FIXED: Using a relative path
-            await axios.post('${process.env.REACT_APP_API_URL}/api/interview/end', { interviewId });
+            await axios.post(`${process.env.REACT_APP_API_URL}/api/interview/end`, { interviewId });
             navigate(`/feedback/${interviewId}`);
         } catch (error) {
             console.error("Failed to end interview", error);
