@@ -248,7 +248,7 @@ const trendingTags = ['#InternationalAffairs', '#GenerativeAI', '#InclusiveMusic
           A platform<br />designed for growth
         </h1>
         <p className="text-lg md:text-2xl text-gray-300 mb-10 text-center max-w-2xl">
-          Tools to help you scale your site with your business.
+          Career growth made smart, inclusive, and truly yours.
         </p>
         <Link to="/auth">
           <button className="bg-blue-600 hover:bg-blue-700 text-white text-lg font-semibold px-8 py-4 rounded-xl shadow-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl">

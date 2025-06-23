@@ -17,7 +17,7 @@ const InterviewHomePage = () => {
         setLoading(true);
         setError('');
         try {
-            const response = await axios.post('/api/interview/start', { role, company, difficulty, timeLimit });
+            const response = await axios.post(`/api/interview/start`, { role, company, difficulty, timeLimit });
             // Pass the entire interview object to the interview page state
             navigate(`/interview/${response.data._id}`, { state: { interviewData: response.data } });
         } catch (err) {

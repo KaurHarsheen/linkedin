@@ -58,7 +58,7 @@ const Navigation = () => {
             </div>
           </div>
 
-          {/* Light/Dark Toggle Icon */}
+{/*
           <button
             onClick={() => setDarkMode((prev) => !prev)}
             className="ml-4 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white dark:text-yellow-400 light:text-[#202A44] transition-colors duration-300"
@@ -74,7 +74,7 @@ const Navigation = () => {
               </svg>
             )}
           </button>
-
+*/}
           {/* Desktop Auth Buttons */}
           <div className="hidden md:flex items-center space-x-4">
             <Link to="/auth" className="bg-white text-black px-6 py-2 rounded-lg font-semibold hover:bg-gray-200 transition-colors duration-300">
